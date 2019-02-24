@@ -55,6 +55,19 @@ app.get('/user_list', (req,res) => {
     });
 });
 
+app.get('/user_id/:id', (req,res) => {
+    let sql= "SELECT * FROM user_table WHERE id = " +req.params.id;
+    db.query(sql, (error,result) => {
+        if(error){
+            res.send(error);
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+
+
 //create admin
 app.get('/add_user_admin', (req,res) => {
     let post = {username: 'admin', password:'pass'};
